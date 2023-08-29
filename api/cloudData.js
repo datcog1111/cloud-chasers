@@ -64,6 +64,18 @@ const updateCloud = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getUserClouds = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/cloud.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
-  getClouds, createCloud, getSingleCloud, deleteCloud, updateCloud,
+  getClouds, createCloud, getSingleCloud, deleteCloud, updateCloud, getUserClouds,
 };

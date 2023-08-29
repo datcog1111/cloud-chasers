@@ -20,3 +20,64 @@ a {
 body {
   background-color: lightblue;
 }
+
+.mb-3 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#stratus {
+  background-image:url(https://www.climateandweather.net/wp-content/uploads/2022/09/How-Do-You-Identify-Stratus-Clouds.jpg);
+  width: 250px;
+  height: 200px;
+  border: solid 1px black;
+}
+
+#cumulus {
+  background-image:url(https://s3-us-west-1.amazonaws.com/contentlab.studiod/getty/3c886ec3ca0746c8a5802512396a8495.jpg);
+  width: 250px;
+  height: 200px;
+  border: solid 1px black;
+}
+
+#cirrocumulus {
+  background-image:url(https://www.collinsdictionary.com/images/full/cirrocumulus_296874194.jpg);
+  width: 250px;
+  height: 200px;
+  border: solid 1px black;
+}
+
+#stratocumulus {
+  background-image:url(https://whatsthiscloud.com/wp-content/uploads/2018/03/stratocumulus-radiatus-1040x585.jpg);
+  width: 250px;
+  height: 200px;
+  border: solid 1px black;
+}
+
+#altocumulus {
+  background-image:url(https://upload.wikimedia.org/wikipedia/commons/1/13/Altocumulus.jpg);
+  width: 250px;
+  height:200px;
+  border: solid 1px black;
+}
+
+#nimbostratus {
+  background-image:url(https://img-aws.ehowcdn.com/360x267p/s3-us-west-1.amazonaws.com/contentlab.studiod/getty/cache.gettyimages.com/fca6d17c8a9b4f6a87db5b3bfa980cfb.jpg);
+  width: 250px;
+  height:200px;
+  border: solid 1px black;
+}
+
+#cumulonimbus {
+  background-image:url(https://whatsthiscloud.com/wp-content/uploads/2018/03/cumulonimbus-capillatus-incus-1040x585.jpg);
+  width: 250px;
+  height:200px;
+  border: solid 1px black;
+}
+
+#cirrus {
+  background-image:url(https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/weather/cloud/cirrus-hooks.jpg);
+  width: 250px;
+  height: 200px;
+  border: solid 1px black;
+}

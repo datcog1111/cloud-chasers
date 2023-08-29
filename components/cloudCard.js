@@ -4,12 +4,14 @@ import { useRouter } from 'next/router';
 import { Image } from 'react-bootstrap';
 
 function CloudPic({ cloudObj }) {
+  console.warn(cloudObj);
   const router = useRouter();
   const itemClick = () => {
     if (cloudObj.firebaseKey) {
       router.push(`/clouds/${cloudObj.firebaseKey}`);
     }
   };
+
   return (
     <Image src={cloudObj.image} alt="cloud" onClick={itemClick} max-width="auto" max-height="auto" />
   );

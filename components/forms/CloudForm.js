@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -18,7 +19,7 @@ function CloudForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
-  const [type, setType] = useState('stratus');
+  const [cloudType, setCloudType] = useState('stratus');
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInput(obj);
@@ -33,16 +34,16 @@ function CloudForm({ obj }) {
   };
 
   const onRadioChange = (e) => {
-    setType(e.target.value);
+    setCloudType(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      formInput.type = type;
-      updateCloud(formInput).then(() => router.push(`/cloud/${obj.firebaseKey}`));
+      formInput.type = cloudType;
+      updateCloud(formInput).then(() => router.push(`/clouds/${obj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, type: cloudType, uid: user.uid };
       createCloud(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCloud(patchPayload).then(() => {
@@ -72,22 +73,75 @@ function CloudForm({ obj }) {
           type="radio"
           name="type"
           value="stratus"
-          checked={type === 'stratus'}
+          checked={cloudType === 'stratus'}
           onChange={onRadioChange}
         />
-        <label htmlFor="stratus">Stratus</label>
       </Form.Group>
       <Form.Group controlId="cumulus" className="mb-3">
         <Form.Check
           type="radio"
           name="type"
           value="cumulus"
-          checked={type === 'cumulus'}
+          checked={cloudType === 'cumulus'}
+          onChange={onRadioChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="cirrocumulus" className="mb-3">
+        <Form.Check
+          type="radio"
+          name="type"
+          value="cirrocumulus"
+          checked={cloudType === 'cirrocumulus'}
+          onChange={onRadioChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="stratocumulus" className="mb-3">
+        <Form.Check
+          type="radio"
+          name="type"
+          value="stratocumulus"
+          checked={cloudType === 'stratocumulus'}
+          onChange={onRadioChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="altocumulus" className="mb-3">
+        <Form.Check
+          type="radio"
+          name="type"
+          value="altocumulus"
+          checked={cloudType === 'altocumulus'}
+          onChange={onRadioChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="nimbostratus" className="mb-3">
+        <Form.Check
+          type="radio"
+          name="type"
+          value="nimbostratus"
+          checked={cloudType === 'nimbostratus'}
+          onChange={onRadioChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="cumulonimbus" className="mb-3">
+        <Form.Check
+          type="radio"
+          name="type"
+          value="cumulonimbus"
+          checked={cloudType === 'cumulonimbus'}
+          onChange={onRadioChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="cirrus" className="mb-3">
+        <Form.Check
+          type="radio"
+          name="type"
+          value="cirrus"
+          checked={cloudType === 'cirrus'}
           onChange={onRadioChange}
         />
       </Form.Group>
       <p>
-        Select Cloud: {type}
+        Select Cloud: {cloudType}
       </p>
 
       <FloatingLabel controlId="floatingTextarea" label="description" className="mb-3">
