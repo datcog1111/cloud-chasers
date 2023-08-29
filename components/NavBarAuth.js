@@ -21,6 +21,9 @@ export default function NavBarAuth() {
             <Link passHref href="/newCloud">
               <Nav.Link>Found</Nav.Link>
             </Link>
+            <Link passHref href="/profile">
+              <Nav.Link>Profile</Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>

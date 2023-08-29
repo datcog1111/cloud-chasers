@@ -1,14 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Button } from 'react-bootstrap';
+import Link from 'next/link';
 // import Head from 'next/head';
-import { getSingleCloud } from '../../api/cloudData';
+import { getSingleCloud, deleteCloud } from '../../api/cloudData';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewCloud() {
   const [cloudDetails, setCloudDetails] = useState({});
   const router = useRouter();
 
   const { firebaseKey } = router.query;
+
+  const { user } = useAuth();
+
+  const isCurrentUserCreator = cloudDetails.uid === user.uid;
+
+  const deleteThisCloud = () => {
+    deleteCloud(cloudDetails.firebaseKey).then(() => (router.push('/')));
+  };
 
   useEffect(() => {
     getSingleCloud(firebaseKey).then(setCloudDetails);
@@ -23,11 +34,21 @@ export default function ViewCloud() {
       )}
       <div className="text-black ms-5 details">
         <h5>
+          Cloud Type:
           {cloudDetails.type}
         </h5>
         <p>{cloudDetails.description}</p>
         <h3>{cloudDetails.location}</h3>
         <h6>{cloudDetails.added_on}</h6>
+        {isCurrentUserCreator && (
+        <Link href={`/clouds/edit/${cloudDetails.firebaseKey}`} passHref>
+          <Button variant="primary" className="edit">EDIT</Button>
+        </Link>
+        )}
+
+        {isCurrentUserCreator && (
+          <Button variant="danger" onClick={deleteThisCloud} className="m-2"> DELETE </Button>
+        )}
       </div>
     </div>
   );
