@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 // import Head from 'next/head';
 import { getSingleCloud, deleteCloud } from '../../api/cloudData';
+import CommentsSection from '../../components/forms/commentSection';
 import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewCloud() {
@@ -26,30 +27,37 @@ export default function ViewCloud() {
   }, [firebaseKey]);
 
   return (
-    <div className="mt-5 d-flex flex-wrap">
-      {cloudDetails.image && (
-      <div className="d-flex flex-column">
-        <img src={cloudDetails.image} alt={cloudDetails.description} style={{ width: '400px' }} />
-      </div>
-      )}
-      <div className="text-black ms-5 details">
-        <h5>
-          Cloud Type:
-          {cloudDetails.type}
-        </h5>
-        <p>{cloudDetails.description}</p>
-        <h3>{cloudDetails.location}</h3>
-        <h6>{cloudDetails.added_on}</h6>
-        {isCurrentUserCreator && (
-        <Link href={`/clouds/edit/${cloudDetails.firebaseKey}`} passHref>
-          <Button variant="primary" className="edit">EDIT</Button>
-        </Link>
+    <div className="details-container">
+      <div className="image-details mt-5 d-flex flex-wrap">
+        {cloudDetails.image && (
+        <div className="d-flex flex-column">
+          <img src={cloudDetails.image} alt={cloudDetails.description} style={{ width: '400px' }} />
+        </div>
         )}
+        <div className="text-black ms-5 details">
+          <h5>
+            Cloud Type:
+            {cloudDetails.type}
+          </h5>
+          <p>{cloudDetails.description}</p>
+          <h3>{cloudDetails.location}</h3>
+          <h6>{cloudDetails.timestamp}</h6>
+          {isCurrentUserCreator && (
+          <Link href={`/clouds/edit/${cloudDetails.firebaseKey}`} passHref>
+            <Button variant="primary" className="edit">EDIT</Button>
+          </Link>
+          )}
 
-        {isCurrentUserCreator && (
+          {isCurrentUserCreator && (
           <Button variant="danger" onClick={deleteThisCloud} className="m-2"> DELETE </Button>
-        )}
+          )}
+        </div>
       </div>
+      <div className="comments-section">
+
+        <CommentsSection cloudFirebaseKey={firebaseKey} userUID={user.uid} />
+      </div>
+
     </div>
   );
 }

@@ -13,7 +13,7 @@ function CloudPic({ cloudObj }) {
   };
 
   return (
-    <Image src={cloudObj.image} alt="cloud" onClick={itemClick} max-width="auto" max-height="auto" />
+    <Image src={cloudObj.image} alt="cloud" className="cloud-pic" onClick={itemClick} style={{ maxWidth: '400px', maxHeight: '400px' }} />
   );
 }
 
