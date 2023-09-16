@@ -2,17 +2,17 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createCloud, updateCloud } from '../../api/cloudData';
+import Map from '../map';
 
 const initialState = {
   image: '',
   type: '',
   description: '',
-  location: '',
+  lat: '',
+  lng: '',
 };
 
 function CloudForm({ obj }) {
@@ -20,6 +20,7 @@ function CloudForm({ obj }) {
   const router = useRouter();
   const { user } = useAuth();
   const [cloudType, setCloudType] = useState('stratus');
+  const [isMapModalOpen, setIsMapModalOpen] = useState(false);
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInput(obj);
@@ -37,13 +38,27 @@ function CloudForm({ obj }) {
     setCloudType(e.target.value);
   };
 
+  const handleMapClick = (e) => {
+    setFormInput((prevState) => ({
+      ...prevState,
+      lat: e.lat,
+      lng: e.lng,
+    }));
+  };
+
+  const toggleMap = () => {
+    setIsMapModalOpen(!isMapModalOpen);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
       formInput.type = cloudType;
       updateCloud(formInput).then(() => router.push(`/clouds/${obj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, type: cloudType, uid: user.uid };
+      const payload = {
+        ...formInput, type: cloudType, uid: user.uid, timeSubmitted: Date().toString(),
+      };
       createCloud(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCloud(patchPayload).then(() => {
@@ -154,17 +169,32 @@ function CloudForm({ obj }) {
           required
         />
       </FloatingLabel>
+      <div>
+        <FloatingLabel controlId="floatingInput1" label="latitude" className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="Latitude"
+            name="lat"
+            value={formInput.lat}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput" label="location" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter A Location"
-          name="location"
-          value={formInput.location}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+        <FloatingLabel controlId="floatingInput1" label="longitude" className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="longitude"
+            name="lng"
+            value={formInput.lng}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+      </div>
+      {isMapModalOpen
+        ? <><Button onClick={toggleMap}>Close Map</Button> <Map mapOnForm onClick={handleMapClick} style={{}} /></>
+        : <Button onClick={toggleMap}> View Map </Button>}
 
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Submit</Button>
     </Form>
