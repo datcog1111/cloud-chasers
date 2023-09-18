@@ -29,9 +29,9 @@ export default function ViewCloud() {
   return (
     <div className="details-container">
       <div className="image-details mt-5 d-flex flex-wrap">
-        {cloudDetails.image && (
+        {cloudDetails.imageUrl && (
         <div className="d-flex flex-column">
-          <img src={cloudDetails.image} alt={cloudDetails.description} style={{ width: '400px' }} />
+          <img src={cloudDetails.imageUrl} alt={cloudDetails.description} style={{ width: '400px' }} />
         </div>
         )}
         <div className="text-black ms-5 details">

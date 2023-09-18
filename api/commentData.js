@@ -56,6 +56,22 @@ const updateComment = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleComment = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/comment/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
-  getComments, createComment, deleteComment, updateComment,
+  getComments,
+  createComment,
+  deleteComment,
+  updateComment,
+  getSingleComment,
 };
