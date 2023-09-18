@@ -13,13 +13,13 @@ function CloudPic({ cloudObj }) {
   };
 
   return (
-    <Image src={cloudObj.image} alt="cloud" className="cloud-pic" onClick={itemClick} style={{ maxWidth: '400px', maxHeight: '400px' }} />
+    <Image src={cloudObj.imageUrl} alt="cloud" className="cloud-pic" onClick={itemClick} style={{ maxWidth: '400px', maxHeight: '400px' }} />
   );
 }
 
 CloudPic.propTypes = {
   cloudObj: PropTypes.shape({
-    image: PropTypes.string,
+    imageUrl: PropTypes.string,
     firebaseKey: PropTypes.string,
 
   }).isRequired,

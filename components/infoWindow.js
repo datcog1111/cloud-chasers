@@ -11,14 +11,14 @@ export default function CustomInfoWindow({ cloud }) {
       maxWidth: '400px',
     }}
     >
-      <img src={cloud.image} alt={cloud.type} style={{ width: '400px', height: '250px' }} />
+      <img src={cloud.imageUrl} alt={cloud.type} style={{ width: '400px', height: '250px' }} />
     </div>
   );
 }
 
 CustomInfoWindow.propTypes = {
   cloud: PropTypes.shape({
-    image: PropTypes.string,
+    imageUrl: PropTypes.string,
     type: PropTypes.string,
   }).isRequired,
 };

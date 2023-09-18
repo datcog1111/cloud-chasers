@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import GoogleMapReact from 'google-map-react';
-import { InfoWindow } from '@react-google-maps/api';
 import {
   useState,
   useEffect,

@@ -39,8 +39,8 @@ export default function MapMarker({ cloudObj, onMarkerClick, isSelected }) {
         onMouseLeave={handleMouseLeave}
       >
         {cloudObj.image
-          ? <Card.Img variant="top" src={cloudObj.image} alt="cloud" style={{ height: '50px' }} />
-          : <Card.Img variant="top" src={cloudObj.image} alt="thing" style={{ height: '50px' }} />}
+          ? <Card.Img variant="top" src={cloudObj.imageUrl} alt="cloud" style={{ height: '50px' }} />
+          : <Card.Img variant="top" src={cloudObj.imageUrl} alt="thing" style={{ height: '50px' }} />}
       </Card>
       {isSelected && <CustomInfoWindow cloud={cloudObj} />}
     </>
@@ -49,7 +49,7 @@ export default function MapMarker({ cloudObj, onMarkerClick, isSelected }) {
 
 MapMarker.propTypes = {
   cloudObj: PropTypes.shape({
-    image: PropTypes.string,
+    imageUrl: PropTypes.string,
     firebaseKey: PropTypes.string,
     uid: PropTypes.string,
   }),

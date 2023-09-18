@@ -6,13 +6,17 @@ import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createCloud, updateCloud } from '../../api/cloudData';
 import Map from '../map';
+import FileUpload from '../fileUpload';
+import photoStorage from '../../api/photoStorage';
 
 const initialState = {
-  image: '',
+  imageUrl: '',
   type: '',
   description: '',
   lat: '',
   lng: '',
+  filePath: '',
+  firebaseKey: '',
 };
 
 function CloudForm({ obj }) {
@@ -21,6 +25,7 @@ function CloudForm({ obj }) {
   const { user } = useAuth();
   const [cloudType, setCloudType] = useState('stratus');
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInput(obj);
@@ -50,19 +55,35 @@ function CloudForm({ obj }) {
     setIsMapModalOpen(!isMapModalOpen);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const commonPayload = {
+      ...formInput,
+      type: cloudType,
+      uid: user.uid,
+      timeSubmitted: new Date().toString(),
+    };
+
     if (obj.firebaseKey) {
-      formInput.type = cloudType;
-      updateCloud(formInput).then(() => router.push(`/clouds/${obj.firebaseKey}`));
+      if (file) {
+        const imageObj = await photoStorage.upload(file);
+        const updatedPayload = { ...commonPayload, imageUrl: imageObj.imageUrl, filePath: imageObj.filePath };
+        await updateCloud(updatedPayload);
+      } else {
+        await updateCloud(commonPayload);
+      }
+      router.push(`/clouds/${obj.firebaseKey}`);
     } else {
-      const payload = {
-        ...formInput, type: cloudType, uid: user.uid, timeSubmitted: Date().toString(),
-      };
-      createCloud(payload).then(({ name }) => {
+      if (file) {
+        const imageObj = await photoStorage.upload(file, user.uid);
+        commonPayload.imageUrl = imageObj.imageUrl;
+        commonPayload.filePath = imageObj.filePath;
+      }
+      createCloud(commonPayload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCloud(patchPayload).then(() => {
-          router.push('/');
+          router.push(`/clouds/${name}`);
         });
       });
     }
@@ -72,16 +93,7 @@ function CloudForm({ obj }) {
     <Form onSubmit={handleSubmit}>
       <h2 className="text-white-mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Cloud</h2>
 
-      <FloatingLabel controlId="floatingInput" label="Cloud Image" className="mb-3">
-        <Form.Control
-          type="url"
-          placeholder="Enter Cloud Image"
-          name="image"
-          value={formInput.image}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+      <FileUpload setFile={setFile} />
 
       <Form.Group controlId="stratus" className="mb-3">
         <Form.Check
@@ -203,11 +215,13 @@ function CloudForm({ obj }) {
 
 CloudForm.propTypes = {
   obj: PropTypes.shape({
-    image: PropTypes.string,
+    imageUrl: PropTypes.string,
     type: PropTypes.string,
     description: PropTypes.string,
     location: PropTypes.string,
     firebaseKey: PropTypes.string,
+    uid: PropTypes.string,
+    filePath: PropTypes.string,
   }),
 };
 

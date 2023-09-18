@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button, Carousel, Image } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { getClouds } from '../api/cloudData';
 import CloudPic from '../components/cloudCard';
 
