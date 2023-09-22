@@ -95,78 +95,80 @@ function CloudForm({ obj }) {
 
       <FileUpload setFile={setFile} />
 
-      <Form.Group controlId="stratus" className="mb-3">
-        <Form.Check
-          type="radio"
-          name="type"
-          value="stratus"
-          checked={cloudType === 'stratus'}
-          onChange={onRadioChange}
-        />
-      </Form.Group>
-      <Form.Group controlId="cumulus" className="mb-3">
-        <Form.Check
-          type="radio"
-          name="type"
-          value="cumulus"
-          checked={cloudType === 'cumulus'}
-          onChange={onRadioChange}
-        />
-      </Form.Group>
-      <Form.Group controlId="cirrocumulus" className="mb-3">
-        <Form.Check
-          type="radio"
-          name="type"
-          value="cirrocumulus"
-          checked={cloudType === 'cirrocumulus'}
-          onChange={onRadioChange}
-        />
-      </Form.Group>
-      <Form.Group controlId="stratocumulus" className="mb-3">
-        <Form.Check
-          type="radio"
-          name="type"
-          value="stratocumulus"
-          checked={cloudType === 'stratocumulus'}
-          onChange={onRadioChange}
-        />
-      </Form.Group>
-      <Form.Group controlId="altocumulus" className="mb-3">
-        <Form.Check
-          type="radio"
-          name="type"
-          value="altocumulus"
-          checked={cloudType === 'altocumulus'}
-          onChange={onRadioChange}
-        />
-      </Form.Group>
-      <Form.Group controlId="nimbostratus" className="mb-3">
-        <Form.Check
-          type="radio"
-          name="type"
-          value="nimbostratus"
-          checked={cloudType === 'nimbostratus'}
-          onChange={onRadioChange}
-        />
-      </Form.Group>
-      <Form.Group controlId="cumulonimbus" className="mb-3">
-        <Form.Check
-          type="radio"
-          name="type"
-          value="cumulonimbus"
-          checked={cloudType === 'cumulonimbus'}
-          onChange={onRadioChange}
-        />
-      </Form.Group>
-      <Form.Group controlId="cirrus" className="mb-3">
-        <Form.Check
-          type="radio"
-          name="type"
-          value="cirrus"
-          checked={cloudType === 'cirrus'}
-          onChange={onRadioChange}
-        />
-      </Form.Group>
+      <div className="cloud-type-form">
+        <Form.Group controlId="stratus" className="mb-3">
+          <Form.Check
+            type="radio"
+            name="type"
+            value="stratus"
+            checked={cloudType === 'stratus'}
+            onChange={onRadioChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="cumulus" className="mb-3">
+          <Form.Check
+            type="radio"
+            name="type"
+            value="cumulus"
+            checked={cloudType === 'cumulus'}
+            onChange={onRadioChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="cirrocumulus" className="mb-3">
+          <Form.Check
+            type="radio"
+            name="type"
+            value="cirrocumulus"
+            checked={cloudType === 'cirrocumulus'}
+            onChange={onRadioChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="stratocumulus" className="mb-3">
+          <Form.Check
+            type="radio"
+            name="type"
+            value="stratocumulus"
+            checked={cloudType === 'stratocumulus'}
+            onChange={onRadioChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="altocumulus" className="mb-3">
+          <Form.Check
+            type="radio"
+            name="type"
+            value="altocumulus"
+            checked={cloudType === 'altocumulus'}
+            onChange={onRadioChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="nimbostratus" className="mb-3">
+          <Form.Check
+            type="radio"
+            name="type"
+            value="nimbostratus"
+            checked={cloudType === 'nimbostratus'}
+            onChange={onRadioChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="cumulonimbus" className="mb-3">
+          <Form.Check
+            type="radio"
+            name="type"
+            value="cumulonimbus"
+            checked={cloudType === 'cumulonimbus'}
+            onChange={onRadioChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="cirrus" className="mb-3">
+          <Form.Check
+            type="radio"
+            name="type"
+            value="cirrus"
+            checked={cloudType === 'cirrus'}
+            onChange={onRadioChange}
+          />
+        </Form.Group>
+      </div>
       <p>
         Select Cloud: {cloudType}
       </p>
@@ -182,9 +184,9 @@ function CloudForm({ obj }) {
         />
       </FloatingLabel>
       <div>
-        <FloatingLabel controlId="floatingInput1" label="latitude" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" className="d-none">
           <Form.Control
-            type="text"
+            type="hidden"
             placeholder="Latitude"
             name="lat"
             value={formInput.lat}
@@ -193,9 +195,9 @@ function CloudForm({ obj }) {
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput1" label="longitude" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" className="d-none">
           <Form.Control
-            type="text"
+            type="hidden"
             placeholder="longitude"
             name="lng"
             value={formInput.lng}

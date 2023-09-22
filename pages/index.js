@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { Button } from 'react-bootstrap';
 import { getClouds } from '../api/cloudData';
 import CloudPic from '../components/cloudCard';
@@ -18,17 +19,23 @@ function Home() {
   return (
     <div className="container">
       <div className="home-image">
-        <img src="https://i.pinimg.com/564x/8b/b9/aa/8bb9aae8a3ef9f680c6e862e90eca047.jpg" alt="home cloud" style={{ width: '100%', height: 'auto' }} />
+        <img src="https://live-production.wcms.abc-cdn.net.au/d18cf9d4f9ba4983ec312050ce5711bf?impolicy=wcms_crop_resize&cropH=1358&cropW=2043&xPos=5&yPos=87&width=862&height=575" alt="home cloud" style={{ width: '100%', height: 'auto' }} />
       </div>
       <div className="text-center my-4">
         <Link href="/newCloud" passHref>
           <Button> Add A Cloud</Button>
         </Link>
-        <div className="d-flex flex-wrap" id="homepage">
-          {clouds.map((cloud) => (
-            <CloudPic key={cloud.firebaseKey} cloudObj={cloud} onUpdate={getAllTheClouds} />
-          ))}
-        </div>
+        <ResponsiveMasonry>
+          <Masonry
+            breakpointCols={3}
+            className="masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
+            {clouds.map((cloud) => (
+              <CloudPic key={cloud.firebaseKey} cloudObj={cloud} onUpdate={getAllTheClouds} />
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { Image } from 'react-bootstrap';
 
 function CloudPic({ cloudObj }) {
-  console.warn(cloudObj);
   const router = useRouter();
   const itemClick = () => {
     if (cloudObj.firebaseKey) {
@@ -13,7 +12,9 @@ function CloudPic({ cloudObj }) {
   };
 
   return (
-    <Image src={cloudObj.imageUrl} alt="cloud" className="cloud-pic" onClick={itemClick} style={{ maxWidth: '400px', maxHeight: '400px' }} />
+    <div className="gallery">
+      <Image src={cloudObj.imageUrl} alt="cloud" className="cloud-pic" onClick={itemClick} style={{ width: '100%' }} />
+    </div>
   );
 }
 
