@@ -18,7 +18,7 @@ It's as simple as clicking on the Netlify Link below!
 
 ## List of Contributors
 
-Hallie Tucker - datcog1111@github.com
+Hallie Tucker - github.com/datcog1111
 
 ## MVP Features
 
