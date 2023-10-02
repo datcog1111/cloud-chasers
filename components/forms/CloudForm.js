@@ -207,10 +207,10 @@ function CloudForm({ obj }) {
         </FloatingLabel>
       </div>
       {isMapModalOpen
-        ? <><Button onClick={toggleMap}>Close Map</Button> <Map mapOnForm onClick={handleMapClick} style={{}} /></>
-        : <Button onClick={toggleMap}> View Map </Button>}
+        ? <><Button variant="outline-dark" onClick={toggleMap}>Close Map</Button> <Map mapOnForm onClick={handleMapClick} style={{}} /></>
+        : <Button variant="outline-dark" className="map-form" onClick={toggleMap}> View Map </Button>}
 
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Submit</Button>
+      <Button variant="outline-dark" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Submit</Button>
     </Form>
   );
 }

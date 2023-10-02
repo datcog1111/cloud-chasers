@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Image } from 'react-bootstrap';
 // import Head from 'next/head';
 // import PropTypes from 'prop-types';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { getUserClouds } from '../api/cloudData';
 import CloudPic from './cloudCard';
 import { useAuth } from '../utils/context/authContext';
@@ -30,15 +31,22 @@ export default function UserProfile() {
   }
   return (
     <div><h1>{user.displayName}</h1>
-      <Image src={user.photoURL} alt="user" width="100px" height="100px" />
-      <h3><b>Last Log In: </b> {user.metadata.lastSignInTime}</h3>
+      <Image src={user.photoURL} alt="user" className="profile-image" width="100px" height="100px" />
+      <h6><b>Last Log In: </b> {user.metadata.lastSignInTime}</h6>
 
-      <div className="d-flex flex-wrap">
-        {clouds.map((cloud) => (
-          <CloudPic key={cloud.firebaseKey} cloudObj={cloud} onUpdate={getAllTheClouds} />
-        ))}
-      </div>
+      <ResponsiveMasonry>
+        <Masonry
+          breakpointCols={3}
+          className="masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {clouds.map((cloud) => (
+            <CloudPic key={cloud.firebaseKey} cloudObj={cloud} onUpdate={getAllTheClouds} />
+          ))}
+        </Masonry>
+      </ResponsiveMasonry>
     </div>
+
   );
 }
 

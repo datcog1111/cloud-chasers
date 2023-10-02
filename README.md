@@ -1,62 +1,73 @@
-# React/Next.js Template
+## Cloud Chasers
+Cloud images clogging your phone photo library with nowhere to go? See a beautiful cloud and what to know what kind it is? Look no further! Cloud Chasers is an image application geared towards uploading, sharing, and saving your beautiful cloud images!
 
-[See Live Demo of this Template](https://drt-next-js-template.netlify.app/)
+## How To Use
 
-## Topics
-- [Get Started](#get-started)
-- [Starting the Project](#starting-the-project)
-- [Using axios](#using-axios)
-- [Deploying on Netlify](#deploying-on-netlify)
-___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+It's as simple as clicking on the Netlify Link below! 
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+## Link to Netlify Deployed Site:
+<https://unrivaled-selkie-5d25c9.netlify.app>
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+## Link to MVP ERD
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+<https://dbdiagram.io/d/Cloud-Chasers-6487af0c722eb77494d7ccc7>
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://user-images.githubusercontent.com/29741570/177615077-9b6a75bc-0260-4d29-bb88-bd95a3140687.png">
+## Link to Loom Walkthrough
+
+<https://www.loom.com/share/29c514cf3fef4ceba7d6089d55015f26?sid=f3f30029-2d00-47d8-b6cc-3a51cb26c9c8>
+
+## MVP Features
+
+Images:
+- Upload a cloud image via URL, select its cloud type from an array of radio buttons, and type a description/location associated with the image.
+- View all uploaded images by every user on the community cloud gallery on the home page.
+- View personally uploaded images via the user profile.
+- Click on a cloud image to view details about the cloud.
+- on personally uploaded images, delete and edit capabilities are fully accessable. 
+
+User: 
+- Log in with Google Authentication.
+- View user details on the profile page, including an image, username, and last login time. 
+
+## Stretch Features
+
+Google Map:
+- Pin a location on a Google Map located within the cloud image form
+- View all placed location pins on the community Google map, located on the MAP page. 
+- Click on a marker on the community map to enlarge the image. 
+
+File Upload:
+-Upload an image via a file upload within the form, which replaces the URL upload. 
+
+Comments: 
+-Users can upload comments, and delete their own comments.
+
+## Sign In Authentication Page
+<img width="947" alt="Screenshot 2023-10-02 at 12 24 55 PM" src="https://github.com/datcog1111/cloud-chasers/assets/124822733/caf8f7e6-f6e9-4309-8130-e8b6a9cf0058">
+
+## Home Page Navbar and Add a cloud button
 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+<img width="1379" alt="Screenshot 2023-10-02 at 12 25 12 PM" src="https://github.com/datcog1111/cloud-chasers/assets/124822733/374e0388-c819-4f70-a179-f1aa903f503b">
 
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
+## Home Page Gallery
 
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
+<img width="1373" alt="Screenshot 2023-10-02 at 12 25 25 PM" src="https://github.com/datcog1111/cloud-chasers/assets/124822733/15238086-5d7b-4e3f-84e7-546ddf4681d5">
 
-### Deploying on Netlify
-Netlify will automatically detect your project and prepopulate the settings, but should something go wrong and it does not, here are the commands:
+## "found" Cloud Image Form
 
-- Build Command: `npm run build`
-- Publish directory: `.next`
+<img width="1371" alt="Screenshot 2023-10-02 at 12 25 59 PM" src="https://github.com/datcog1111/cloud-chasers/assets/124822733/3560bfc1-5623-46f0-ada9-6e77540e5131">
 
-#### Additional Steps to Take on Netlify
-- Add Environmental Variables
-    - Any Enviromental variables you are using in your `.env` file should be added to Netlify. 
-        - Go to Site settings > Build & deploy > Environment > Environment variables and the keys and values there.
+## Details Page for Cloud Image
 
-- Update Firebase URL Settings
-    - In Firebase under Authentication select sign in methods, scroll to Authorized domains. Add your Netlify URL.
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<img width="1362" alt="Screenshot 2023-10-02 at 12 25 47 PM" src="https://github.com/datcog1111/cloud-chasers/assets/124822733/4b9c0bbc-38fa-4024-b968-52a42cd43049">
+
+## Profile Page
+
+<img width="1353" alt="Screenshot 2023-10-02 at 12 26 08 PM" src="https://github.com/datcog1111/cloud-chasers/assets/124822733/203efb70-85a3-4702-8108-1914e5711361">
+
+
+## Google Map Page
+
+<img width="1278" alt="Screenshot 2023-10-02 at 12 26 15 PM" src="https://github.com/datcog1111/cloud-chasers/assets/124822733/fa0ca2ef-cb9c-4821-905d-c04f03b4e1c9">

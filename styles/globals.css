@@ -1,12 +1,11 @@
 @import 'bootstrap/dist/css/bootstrap.css';
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap');
 html,
 body {
   padding: 0;
   margin: 0;
-  width: 1200px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  width: 100%;
+  font-family: 'Roboto', Regular;
 }
 
 a {
@@ -19,11 +18,23 @@ a {
 }
 
 body {
-  background-image: linear-gradient(#5E72Eb,#FF9190 );
+  background-color: #F1EEFB;
 }
 
 #sign-in-image {
   background-color: #0077b6;
+}
+
+.title-nav {
+  margin-right: 150px;
+  margin-top: 5px;
+  font-family: 'Roboto', Regular;
+  font-size:xx-large
+}
+
+#navbar {
+  border-bottom: 2px solid black;
+  font-family: 'Roboto', light;
 }
 
 /* #homepage {
@@ -47,29 +58,37 @@ body {
   padding-right: 20px;
   background-clip: padding-box;
 }
-.container {
-  align-content: center;
-  margin-left: 100px;
+
+.image-container {
+  position: relative;
+  width: 100%;
 }
 
-.home-image {
-  width: 1000px;
-  justify-content: center;
-  align-content:center;
+.image-container img {
+  width: 1400px;
+  height: 800px;
   border: 2px solid black;
   border-radius: 25px;
 }
 
-.home-image img {
-  border-radius: 25px;
+.image-container .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  padding: 16px 30px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
 }
 
-
-
-#navbar {
-  display: flex;
-  justify-content: space-around;
-  padding: 0px;
+.image-container .btn:hover {
+  background-color: black;
+  color: white;
 }
 
 .mb-3 {
@@ -105,6 +124,8 @@ body {
 
 .image-details {
   width: 100%;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 .comments-section {
   width: 100%;
@@ -131,9 +152,17 @@ body {
   color: #888;
 }
 
+.profile-image {
+  border-radius:50%;
+}
+
 .cloud-type-form {
   display: flex;
   flex-wrap: wrap;
+}
+
+.map-form {
+  margin-left: 30px;
 }
 #stratus {
   background-image:url(https://www.climateandweather.net/wp-content/uploads/2022/09/How-Do-You-Identify-Stratus-Clouds.jpg);

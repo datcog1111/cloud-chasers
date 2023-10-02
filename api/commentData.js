@@ -11,7 +11,10 @@ const getComments = (cloudFirebaseKey) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      const allComments = Object.values(data);
+      const allComments = Object.entries(data).map(([key, value]) => ({
+        ...value,
+        firebaseKey: key,
+      }));
       const filteredComments = allComments.filter((comment) => comment.cloudFirebaseKey === cloudFirebaseKey);
       resolve(filteredComments);
     })

@@ -22,8 +22,10 @@ CloudPic.propTypes = {
   cloudObj: PropTypes.shape({
     imageUrl: PropTypes.string,
     firebaseKey: PropTypes.string,
+    favorite: PropTypes.bool,
 
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
 
 export default CloudPic;

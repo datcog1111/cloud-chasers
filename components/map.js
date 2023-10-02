@@ -44,7 +44,7 @@ export default function Map({ mapOnForm, onClick }) {
     <div style={{
       height: '75vh',
       width: '75%',
-      marginLeft: '15%',
+      marginLeft: '3%',
       position: 'absolute',
       top: '50%',
       transform: 'translate(0, -50%)',

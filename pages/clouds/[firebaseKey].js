@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { getSingleCloud, deleteCloud } from '../../api/cloudData';
 import CommentsSection from '../../components/forms/commentSection';
 import { useAuth } from '../../utils/context/authContext';
+// import deleteCloudComments from '../../api/mergedData';
 
 export default function ViewCloud() {
   const [cloudDetails, setCloudDetails] = useState({});
@@ -19,7 +20,7 @@ export default function ViewCloud() {
   const isCurrentUserCreator = cloudDetails.uid === user.uid;
 
   const deleteThisCloud = () => {
-    deleteCloud(cloudDetails.firebaseKey).then(() => (router.push('/')));
+    deleteCloud(cloudDetails.firebaseKey).then(() => (router.push('/profile')));
   };
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function ViewCloud() {
       <div className="image-details mt-5 d-flex flex-wrap">
         {cloudDetails.imageUrl && (
         <div className="d-flex flex-column">
-          <img src={cloudDetails.imageUrl} alt={cloudDetails.description} style={{ width: '400px' }} />
+          <img src={cloudDetails.imageUrl} alt={cloudDetails.description} style={{ width: '600px' }} />
         </div>
         )}
         <div className="text-black ms-5 details">

@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
-import { getComments, createComment } from '../../api/commentData';
+import { getComments, createComment, deleteComment } from '../../api/commentData';
 import { useAuth } from '../../utils/context/authContext';
 
 export default function CommentsSection({ cloudFirebaseKey }) {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const { user } = useAuth();
+
+  const deleteThisComment = (firebaseKey) => {
+    if (window.confirm('Delete comment?')) {
+      deleteComment(firebaseKey).then(() => getComments(cloudFirebaseKey).then(setComments));
+    }
+  };
 
   useEffect(() => {
     getComments(cloudFirebaseKey).then((comment) => {
@@ -25,21 +31,26 @@ export default function CommentsSection({ cloudFirebaseKey }) {
       text: newComment,
       cloudFirebaseKey,
       userUID: user.uid,
+      userDisplayName: user.displayName,
+      time: new Date().toString(),
     };
     createComment(payload).then(() => {
       getComments(cloudFirebaseKey).then(setComments);
+      setNewComment('');
     });
   };
-
   return (
     <div>
       <h3>Comments</h3>
       <div className="comments-section">
         {comments.map((comment) => (
           <div key={comment.firebaseKey} className="comment-card">
-            <h4>{user.first_name}</h4>
-            <span className="comment-date">{comment.timestamp}</span>
+            <h4>{comment.userDisplayName}</h4>
+            <span className="comment-date">{comment.time}</span>
             <p>{comment.text}</p>
+            <Button variant="danger" onClick={() => deleteThisComment(comment.firebaseKey)} className="mb-2">
+              Delete
+            </Button>
           </div>
         ))}
       </div>
