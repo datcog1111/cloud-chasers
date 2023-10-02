@@ -16,6 +16,10 @@ It's as simple as clicking on the Netlify Link below!
 
 <https://www.loom.com/share/29c514cf3fef4ceba7d6089d55015f26?sid=f3f30029-2d00-47d8-b6cc-3a51cb26c9c8>
 
+## List of Contributors
+
+Hallie Tucker - datcog1111@github.com
+
 ## MVP Features
 
 Images:
