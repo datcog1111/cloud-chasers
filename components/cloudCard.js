@@ -25,7 +25,6 @@ CloudPic.propTypes = {
     favorite: PropTypes.bool,
 
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };
 
 export default CloudPic;
